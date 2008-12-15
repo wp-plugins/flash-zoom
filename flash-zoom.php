@@ -22,11 +22,11 @@ function fz_generate_hash() {
 }
 
 function fz_store_hash($generated_hash) {
-	return update_option('feedsmith_token',$generated_hash,'FeedSmith Security Hash');
+	return update_option('flashzoom_token',$generated_hash,'FlashZoom Security Hash');
 }
 
 function fz_retrieve_hash() {
-	$ret = get_option('feedsmith_token');
+	$ret = get_option('flashzoom_token');
 	return $ret;
 }
 

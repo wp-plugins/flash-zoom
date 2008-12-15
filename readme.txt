@@ -10,7 +10,7 @@ The zoom flash plugin will zoom the size of flash at homepage without change the
 
 == Description ==
 
-If you have a video blog that had many videos in the home page, you must controls the size to fit the styles of homepage. And in the single page, the video will looks too small. The zoom flash plugin will zoom the size of flash without change the source of flash.
+If you have a video blog that had many videos in the home page, you must controls the size to fit the styles of homepage. But if you change the source, the video will looks too small in the single page. The zoom flash plugin will zoom the size of flash without change the source of flash at homepage, and in the single page it will use the original size.
 
 == Installation ==
 

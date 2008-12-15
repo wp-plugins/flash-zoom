@@ -3,7 +3,7 @@
 Plugin Name: Flash Zoom
 Plugin URI: http://rocksun.cn/flash-zoom/
 Description: zoom the flash in homepage.
-Version: 0.8
+Version: 0.9
 Author: Rock Sun
 Author URI: http://rocksun.cn/
 */

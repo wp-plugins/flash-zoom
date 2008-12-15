@@ -8,6 +8,28 @@ Author: Rock Sun
 Author URI: http://rocksun.cn/
 */
 
+function fz_is_hash_valid($form_hash) {
+	$ret = false;
+	$saved_hash = fz_retrieve_hash();
+	if ($form_hash === $saved_hash) {
+		$ret = true;
+	}
+	return $ret;
+}
+
+function fz_generate_hash() {
+	return md5(uniqid(rand(), TRUE));
+}
+
+function fz_store_hash($generated_hash) {
+	return update_option('feedsmith_token',$generated_hash,'FeedSmith Security Hash');
+}
+
+function fz_retrieve_hash() {
+	$ret = get_option('feedsmith_token');
+	return $ret;
+}
+
 add_option('flashzoom_settings',$data,'FlashZoom Options');
 $flashzoom_settings = get_option('flashzoom_settings');
 
@@ -29,7 +51,7 @@ function flash_zoom_options_subpanel() {
 		    $ol_flash = "Please input the number!";
 		  }else{
 			// Now we check the hash, to make sure we are not getting CSRF
-			  if(fb_is_hash_valid($_POST['token'])) {
+			  if(fz_is_hash_valid($_POST['token'])) {
 				  if (isset($_POST['target_width'])) { 
 					  $flashzoom_settings['target_width'] = $_POST['target_width'];
 					  update_option('flashzoom_settings',$flashzoom_settings);
@@ -43,7 +65,7 @@ function flash_zoom_options_subpanel() {
 			  } else {
 				  // Invalid form hash, possible CSRF attempt
 				  $ol_flash = "Security hash missing.";
-			  } // endif fb_is_hash_valid
+			  } // endif fz_is_hash_valid
 			} //endif isInteger
 		} // endif isset(feedburner_url)
 	} else {
@@ -52,13 +74,13 @@ function flash_zoom_options_subpanel() {
 	if ($ol_flash != '') echo '<div id="message" class="updated fade"><p>' . $ol_flash . '</p></div>';
 
 	if (current_user_can('activate_plugins')) {
-	  $temp_hash = fb_generate_hash();
-		fb_store_hash($temp_hash);
+	  $temp_hash = fz_generate_hash();
+		fz_store_hash($temp_hash);
 		echo '<div class="wrap">';
 		echo '<h2>Set Up Flash Zoom Size</h2>';
 		echo '<form action="" method="post">
 		<input type="hidden" name="redirect" value="true" />
-		<input type="hidden" name="token" value="' . fb_retrieve_hash() . '" />
+		<input type="hidden" name="token" value="' . fz_retrieve_hash() . '" />
 		
 		<table class="form-table">
 		<tbody>

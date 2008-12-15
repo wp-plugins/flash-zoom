@@ -25,6 +25,6 @@ no
 
 == Screenshots ==
 
-1. /trunk/before-flash-zoom.png
-2. /trunk/after-flash-zoom.png
+1. The home page before flash zoom
+2. The home page after flash zoom
 
